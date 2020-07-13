@@ -104,7 +104,6 @@ if __name__ == '__main__':
     parser.add_option('--overlap', dest='overlap', type=float)
     parser.add_option('--cnv_type', dest='cnv_type', default='deletion', help='deletion or duplication', type='string')
     (opts, args) = parser.parse_args()
-
     cnv = opts.cnv
     pwd = opts.pwd
     out_file = opts.out_file

@@ -83,11 +83,7 @@ if __name__ == '__main__':
     parser.add_option('--chrY_dup_frq', dest='chrY_dup_frq', default=None, type='string')
     parser.add_option('--chrY_sample', dest='chrY_sample', type=int)
     parser.add_option('--all_sample', dest='all_sample', type=int)
-    # parser.add_option('-p', '--pwd', dest='pwd', default=None, type='string')
-    # parser.add_option('-o', '--out', dest='out_file', default='none', type='string')
     (opts, args) = parser.parse_args()
-    # pwd = opts.pwd
-    # out_file = opts.out_file
     cnv_del = opts.cnv_del
     cnv_dup = opts.cnv_dup
     cnv_del_frq = opts.cnv_del_frq
@@ -104,18 +100,18 @@ if __name__ == '__main__':
     df_dup_cnv_chrY = cnv_freq(chrY_dup_frq, chrY_sample)
     all_cnv_del_frq = df_del_cnv.append(df_del_cnv_chrY)
     all_cnv_dup_frq = df_dup_cnv.append(df_dup_cnv_chrY)
-    all_cnv_del_frq.to_csv("cnv.freq.del.with_chrY.txt", sep='\t', index=False)
-    all_cnv_dup_frq.to_csv("cnv.freq.dup.with_chrY.txt", sep='\t', index=False)
+    all_cnv_del_frq.to_csv("cnv.freq.del.txt", sep='\t', index=False)
+    all_cnv_dup_frq.to_csv("cnv.freq.dup.txt", sep='\t', index=False)
     real_count_del = cnv_real_count_add_sample(cnv_del)
     real_count_dup = cnv_real_count_add_sample(cnv_dup)
     real_count_del_chrY = cnv_real_count_add_sample(chrY_del)
     real_count_dup_chrY = cnv_real_count_add_sample(chrY_dup)
     all_cnv_real_count_del = real_count_del.append(real_count_del_chrY)
     all_cnv_real_count_dup = real_count_dup.append(real_count_dup_chrY)
-    all_cnv_real_count_del.to_csv("cnv.real_count.add_sample.del.with_chrY.txt", sep='\t', index=False)
-    all_cnv_real_count_dup.to_csv("cnv.real_count.add_sample.dup.with_chrY.txt", sep='\t', index=False)
+    all_cnv_real_count_del.to_csv("cnv.real_count.add_sample.del.txt", sep='\t', index=False)
+    all_cnv_real_count_dup.to_csv("cnv.real_count.add_sample.dup.txt", sep='\t', index=False)
     cols = ['#Chr', 'Start', 'End', 'Type']
     merged_del = pd.merge(all_cnv_del_frq, all_cnv_real_count_del, on=cols, how='left')
     merged_dup = pd.merge(all_cnv_dup_frq, all_cnv_real_count_dup, on=cols, how='left')
-    merged_del.to_csv("cnv.freq.real_count.add_sample.del.with_chrY.txt", sep='\t', index=False)
-    merged_dup.to_csv("cnv.freq.real_count.add_sample.dup.with_chrY.txt", sep='\t', index=False)
+    merged_del.to_csv("cnv.freq.real_count.add_sample.del.txt", sep='\t', index=False)
+    merged_dup.to_csv("cnv.freq.real_count.add_sample.dup.txt", sep='\t', index=False)

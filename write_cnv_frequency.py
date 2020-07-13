@@ -17,10 +17,10 @@ def print_usage(option, opt, value, parser):
 
 
 def write_cnv_freq_sh(wkdir, per, cnv_info_path):
-    chroms = ["chr" + str(i) for i in range(1, 23)] + ["chrX"]
+    chroms = ["chr" + str(i) for i in range(1, 23)] + ["chrX", "chrY"]
     cnv_type = ["deletion", "duplication"]
-    python = "/zfssz4/B2C_RD_P2/PMO/fangzhonghai/software/anaconda3/envs/python27/bin/python"
-    py = "/zfssz4/B2C_RD_P2/PMO/fangzhonghai/py_scripts/cnvnator_cnv_frequency.py"
+    python = "python"
+    py = "cnvnator_cnv_frequency.py"
     for chrom in chroms:
         path = os.path.join(wkdir, chrom)
         if not os.path.exists(path):
